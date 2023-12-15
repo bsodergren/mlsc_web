@@ -1,18 +1,19 @@
 <?php
 /**
- * CWP Media tool for load flags
+ *
+ * MLS Script
+ *
  */
 
 namespace MLSC\Bundle\Template\Utils;
 
-use MLSC\Bundle\Template\Template;
 use MLSC\Bundle\Template\Browser\Os;
 use MLSC\Bundle\Template\Browser\Device;
 use MLSC\Bundle\Template\Browser\Browser;
 
 class HTMLDevice
 {
-    public static $DEVICE = 'APPLICATION';
+    public static $DEVICE        = 'APPLICATION';
     public static $default_theme = 'default';
 
     public static $template_dir;
@@ -20,13 +21,13 @@ class HTMLDevice
     public function __construct($template_directory = '')
     {
         self::$template_dir = $template_directory;
-        self::$DEVICE = $this->run();
+        self::$DEVICE       = $this->run();
     }
 
     public function run()
     {
-        $device = new Device();
-        $os = new Os();
+        $device  = new Device();
+        $os      = new Os();
         $browser = new Browser();
 
         /*
@@ -49,18 +50,25 @@ class HTMLDevice
          *
          */
 
-        if ('Edge' == $browser->getName()) {
-            if ('Windows' == $os->getName()) {
+        if ('Edge' == $browser->getName())
+        {
+            if ('Windows' == $os->getName())
+            {
                 return 'DESKTOP';
-            } elseif ('iOS' == $os->getName()) {
+            } elseif ('iOS' == $os->getName())
+            {
                 return 'MOBILE';
             }
-        } elseif ('Chrome' == $browser->getName()) {
-            if ('Windows' == $os->getName()) {
+        } elseif ('Chrome' == $browser->getName())
+        {
+            if ('Windows' == $os->getName())
+            {
                 return 'APPLICATION';
             }
-        } elseif ('Safari' == $browser->getName()) {
-            if ('iOS' == $os->getName()) {
+        } elseif ('Safari' == $browser->getName())
+        {
+            if ('iOS' == $os->getName())
+            {
                 return 'MOBILE';
             }
         }
@@ -71,13 +79,15 @@ class HTMLDevice
     private static function getDevicePath()
     {
         $ClassName = ucfirst(strtolower(self::$DEVICE));
-        return 'MLSC\\Bundle\\Template\\Theme';//.$ClassName;
+
+        return 'MLSC\\Bundle\\Template\\Theme'; // .$ClassName;
     }
 
     public static function getHeader($template = '', $params = [])
     {
         $className = self::getDevicePath().'\\Header';
-        if (class_exists($className)) {
+        if (class_exists($className))
+        {
             return $className::Display($template, $params);
         }
     }
@@ -85,7 +95,8 @@ class HTMLDevice
     public static function getNavbar($template = '', $params = [])
     {
         $className = self::getDevicePath().'\\Navbar';
-        if (class_exists($className)) {
+        if (class_exists($className))
+        {
             return $className::Display($template, $params);
         }
     }
@@ -93,7 +104,8 @@ class HTMLDevice
     public static function getFooter($template = '', $params = [])
     {
         $className = self::getDevicePath().'\\Footer';
-        if (class_exists($className)) {
+        if (class_exists($className))
+        {
             return $className::Display($template, $params);
         }
     }
@@ -102,19 +114,24 @@ class HTMLDevice
     {
         $html = null;
 
-        foreach ($files as $file) {
+        foreach ($files as $file)
+        {
             $filePath = self::getThemepath().'/'.$file;
-            $url = __URL_LAYOUT__.'/'.strtolower(self::$DEVICE).'/'.$file;
-            if (!file_exists($filePath)) {
+            $url      = __URL_LAYOUT__.'/'.strtolower(self::$DEVICE).'/'.$file;
+            if (!file_exists($filePath))
+            {
                 $filePath = self::getDefaultTheme().'/'.$file;
-                $url = __URL_LAYOUT__.'/'.strtolower(self::$default_theme).'/'.$file;
-                if (!file_exists($filePath)) {
+                $url      = __URL_LAYOUT__.'/'.strtolower(self::$default_theme).'/'.$file;
+                if (!file_exists($filePath))
+                {
                     $url = null;
                 }
             }
-            if (null !== $url) {
-                $url = $url .'?'.random_int(100000, 999999);
-                switch ($type) {
+            if (null !== $url)
+            {
+                $url = $url.'?'.random_int(100000, 999999);
+                switch ($type)
+                {
                     case 'image':
                         $html .= $url;
                         break;
@@ -143,14 +160,17 @@ class HTMLDevice
 
     public static function getTemplateFile($template)
     {
-        $template = \DIRECTORY_SEPARATOR.str_replace('.html', '', $template);
+        $template      = \DIRECTORY_SEPARATOR.str_replace('.html', '', $template);
         $template_file = self::getThemePath().\DIRECTORY_SEPARATOR.$template.'.html';
-        if (!file_exists($template_file)) {
+        if (!file_exists($template_file))
+        {
             $template_file = self::getDefaultTheme().\DIRECTORY_SEPARATOR.$template.'.html';
-            if (!file_exists($template_file)) {
+            if (!file_exists($template_file))
+            {
                 $template_file = null;
             }
         }
+
         return $template_file;
     }
 }

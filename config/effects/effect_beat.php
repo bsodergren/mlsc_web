@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_beat",
     "settings": {
         "color": "red",
@@ -9,4 +15,3 @@
         "random_color": true
     }
 }';
- ?>

@@ -1,4 +1,9 @@
 <?php
+/**
+ *
+ * MLS Script
+ *
+ */
 
 namespace MLSC\Bundle\Template\Theme;
 
@@ -11,7 +16,6 @@ class Footer extends HTMLDocument
 
     public static function display($template = '', $params = [])
     {
-
         echo Template::GetHTML('base/footer/footer', $params);
     }
 }

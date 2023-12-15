@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_wiggle",
     "settings": {
         "bar_length": 20,
@@ -8,4 +14,3 @@
         "decay": 0.7
     }
 }';
- ?>

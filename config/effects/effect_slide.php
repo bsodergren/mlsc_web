@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_slide",
     "settings": {
         "gradient": "spectral",
@@ -8,4 +14,3 @@
         "speed": 2
     }
 }';
- ?>

@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_power",
     "settings": {
         "color_mode": "spectral",
@@ -9,4 +15,3 @@
         "s_count": 20
     }
 }';
- ?>

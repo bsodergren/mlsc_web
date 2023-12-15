@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_border",
     "settings": {
         "bar_count": 4,
@@ -20,4 +26,3 @@
         "use_gradient": false
     }
 }';
- ?>

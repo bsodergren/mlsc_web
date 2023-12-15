@@ -1,16 +1,18 @@
 <?php
 /**
- * Bsodergren\utm Media tool for load flags
+ *
+ * MLS Script
+ *
  */
 
 namespace MLSC\Bundle\Template\Browser;
 
 class Device
 {
-    public const UNKNOWN = 'unknown';
+    public const UNKNOWN       = 'unknown';
 
-    public const IPAD = 'iPad';
-    public const IPHONE = 'iPhone';
+    public const IPAD          = 'iPad';
+    public const IPHONE        = 'iPhone';
     public const WINDOWS_PHONE = 'Windows Phone';
 
     /**
@@ -30,11 +32,14 @@ class Device
      */
     public function __construct($userAgent = null)
     {
-        if ($userAgent instanceof UserAgent) {
+        if ($userAgent instanceof UserAgent)
+        {
             $this->setUserAgent($userAgent);
-        } elseif (null === $userAgent || \is_string($userAgent)) {
+        } elseif (null === $userAgent || \is_string($userAgent))
+        {
             $this->setUserAgent(new UserAgent($userAgent));
-        } else {
+        } else
+        {
             throw new InvalidArgumentException();
         }
     }
@@ -62,7 +67,8 @@ class Device
      */
     public function getName()
     {
-        if (!isset($this->name)) {
+        if (!isset($this->name))
+        {
             DeviceDetector::detect($this, $this->getUserAgent());
         }
 

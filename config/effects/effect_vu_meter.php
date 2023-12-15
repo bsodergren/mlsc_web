@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_vu_meter",
     "settings": {
         "bar_length": 2,
@@ -10,4 +16,3 @@
         "use_gradient": true
     }
 }';
- ?>

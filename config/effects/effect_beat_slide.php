@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_beat_slide",
     "settings": {
         "bar_length": 10,
@@ -9,4 +15,3 @@
         "speed": 1
     }
 }';
- ?>

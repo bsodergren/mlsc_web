@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_beat_twinkle",
     "settings": {
         "color": "red",
@@ -10,4 +16,3 @@
         "star_length": 30
     }
 }';
- ?>

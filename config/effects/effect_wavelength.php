@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_wavelength",
     "settings": {
         "blur": 3,
@@ -11,4 +17,3 @@
         "roll_speed": 0
     }
 }';
- ?>

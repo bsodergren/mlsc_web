@@ -1,6 +1,8 @@
 <?php
 /**
- * Bsodergren\utm Media tool for load flags
+ *
+ * MLS Script
+ *
  */
 
 namespace MLSC\Bundle\Template\Browser;
@@ -17,7 +19,8 @@ class UserAgent
      */
     public function __construct($userAgentString = null)
     {
-        if (null !== $userAgentString) {
+        if (null !== $userAgentString)
+        {
             $this->setUserAgentString($userAgentString);
         }
     }
@@ -39,7 +42,8 @@ class UserAgent
      */
     public function getUserAgentString()
     {
-        if (null === $this->userAgentString) {
+        if (null === $this->userAgentString)
+        {
             $this->createUserAgentString();
         }
 

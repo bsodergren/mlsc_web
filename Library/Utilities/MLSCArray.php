@@ -1,30 +1,23 @@
 <?php
 /**
- * Command like Metatag writer for video files.
+ *
+ * MLS Script
+ *
  */
 
 namespace MLSC\Utilities;
 
-/**
- * Summary of MediaArray.
- */
 class MLSCArray
 {
-    /**
-     * Summary of diff.
-     *
-     * @param mixed $array
-     * @param mixed $compare
-     * @param mixed $diff
-     *
-     * @return array
-     */
     public static function diff($array, $compare, $diff = 'key')
     {
         $return_array = [];
-        if ('key' == $diff) {
-            foreach ($array as $key => $value) {
-                if (!\array_key_exists($key, $compare)) {
+        if ('key' == $diff)
+        {
+            foreach ($array as $key => $value)
+            {
+                if (!\array_key_exists($key, $compare))
+                {
                     $return_array[$key] = $value;
                 }
             }
@@ -35,26 +28,28 @@ class MLSCArray
 
     public static function settingToJson($array)
     {
-
         $jsonArray = [];
 
-        foreach($array as $key => $value) {
-            if($key == 'effect') {
+        foreach ($array as $key => $value)
+        {
+            if ($key == 'effect')
+            {
                 $jsonArray[] = '"effect": "' . $value . '"';
                 continue;
             }
 
-            [$effect_setting,$value_type] = explode(":", $key);
-            if(is_array($value)) {
+            [$effect_setting, $value_type] = explode(":", $key);
 
-            }
 
-            switch($value_type) {
+            switch ($value_type)
+            {
                 case 'boolean':
-                    if($value == "off") {
+                    if ($value == "off")
+                    {
                         $jsonArray['settings'][] = '"' . $effect_setting . '": false';
                     }
-                    if($value == "on") {
+                    if ($value == "on")
+                    {
                         $jsonArray['settings'][] = '"' . $effect_setting . '": true';
                     }
                     break;
@@ -71,19 +66,13 @@ class MLSCArray
             }
         }
         return $jsonArray;
-
-
-
-
-
-
     }
+
+
     public static function arrays_are_equal($array1, $array2)
     {
         array_multisort($array1);
         array_multisort($array2);
         return (serialize($array1) === serialize($array2));
     }
-
-
 }

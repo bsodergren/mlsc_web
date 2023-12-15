@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_bars",
     "settings": {
         "color_mode": "spectral",
@@ -10,4 +16,3 @@
         "roll_speed": 0
     }
 }';
- ?>

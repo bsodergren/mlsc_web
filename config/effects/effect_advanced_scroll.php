@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_advanced_scroll",
     "settings": {
         "bass_color": "orange",
@@ -28,4 +34,3 @@
         "uppermid_speed": 4
     }
 }';
- ?>

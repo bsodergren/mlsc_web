@@ -1,6 +1,8 @@
 <?php
 /**
- * Bsodergren\utm Media tool for load flags
+ *
+ * MLS Script
+ *
  */
 
 namespace MLSC\Bundle\Template\Browser;
@@ -52,11 +54,13 @@ class OsDetector implements DetectorInterface
     public static function checkMobileBrowsers(Os $os, UserAgent $userAgent)
     {
         // Check for Opera Mini
-        if (false !== stripos($userAgent->getUserAgentString(), 'opera mini')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'opera mini'))
+        {
             $os->setIsMobile(true);
         } // Set is mobile for Pocket IE
         elseif (false !== stripos($userAgent->getUserAgentString(), 'mspie')
-            || false !== stripos($userAgent->getUserAgentString(), 'pocket')) {
+            || false !== stripos($userAgent->getUserAgentString(), 'pocket'))
+        {
             $os->setIsMobile(true);
         }
     }
@@ -70,9 +74,11 @@ class OsDetector implements DetectorInterface
     {
         if (false !== stripos($userAgent->getUserAgentString(), 'CPU OS')
             || false !== stripos($userAgent->getUserAgentString(), 'iPhone OS')
-            && stripos($userAgent->getUserAgentString(), 'OS X')) {
+            && stripos($userAgent->getUserAgentString(), 'OS X'))
+        {
             $os->setName($os::IOS);
-            if (preg_match('/CPU( iPhone)? OS ([\d_]*)/i', $userAgent->getUserAgentString(), $matches)) {
+            if (preg_match('/CPU( iPhone)? OS ([\d_]*)/i', $userAgent->getUserAgentString(), $matches))
+            {
                 $os->setVersion(str_replace('_', '.', $matches[2]));
             }
             $os->setIsMobile(true);
@@ -94,7 +100,8 @@ class OsDetector implements DetectorInterface
             || false !== stripos($userAgent->getUserAgentString(), 'CrOS ')
         ) {
             $os->setName($os::CHROME_OS);
-            if (preg_match('/Chrome\/([\d\.]*)/i', $userAgent->getUserAgentString(), $matches)) {
+            if (preg_match('/Chrome\/([\d\.]*)/i', $userAgent->getUserAgentString(), $matches))
+            {
                 $os->setVersion($matches[1]);
             }
 
@@ -111,10 +118,13 @@ class OsDetector implements DetectorInterface
      */
     private static function checkOSX(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'OS X')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'OS X'))
+        {
             $os->setName($os::OSX);
-            if (preg_match('/OS X ([\d\._]*)/i', $userAgent->getUserAgentString(), $matches)) {
-                if (isset($matches[1])) {
+            if (preg_match('/OS X ([\d\._]*)/i', $userAgent->getUserAgentString(), $matches))
+            {
+                if (isset($matches[1]))
+                {
                     $os->setVersion(str_replace('_', '.', $matches[1]));
                 }
             }
@@ -132,12 +142,16 @@ class OsDetector implements DetectorInterface
      */
     private static function checkWindows(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'Windows NT')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'Windows NT'))
+        {
             $os->setName($os::WINDOWS);
             // Windows version
-            if (preg_match('/Windows NT ([\d\.]*)/i', $userAgent->getUserAgentString(), $matches)) {
-                if (isset($matches[1])) {
-                    switch (str_replace('_', '.', $matches[1])) {
+            if (preg_match('/Windows NT ([\d\.]*)/i', $userAgent->getUserAgentString(), $matches))
+            {
+                if (isset($matches[1]))
+                {
+                    switch (str_replace('_', '.', $matches[1]))
+                    {
                         case '6.3':
                             $os->setVersion('8.1');
                             break;
@@ -162,7 +176,8 @@ class OsDetector implements DetectorInterface
                             $os->setVersion('NT 4.0');
                             break;
                         default:
-                            if ((float) $matches[1] >= 10.0) {
+                            if ((float) $matches[1] >= 10.0)
+                            {
                                 $os->setVersion($matches[1]);
                             }
                             break;
@@ -172,13 +187,11 @@ class OsDetector implements DetectorInterface
 
             return true;
         } // Windows Me, Windows 98, Windows 95, Windows CE
-        elseif (preg_match(
-            '/(Windows 98; Win 9x 4\.90|Windows 98|Windows 95|Windows CE)/i',
-            $userAgent->getUserAgentString(),
-            $matches
-        )) {
+        elseif (preg_match('/(Windows 98; Win 9x 4\.90|Windows 98|Windows 95|Windows CE)/i', $userAgent->getUserAgentString(), $matches))
+        {
             $os->setName($os::WINDOWS);
-            switch (strtolower($matches[0])) {
+            switch (strtolower($matches[0]))
+            {
                 case 'windows 98; win 9x 4.90':
                     $os->setVersion('Me');
                     break;
@@ -206,12 +219,15 @@ class OsDetector implements DetectorInterface
      */
     private static function checkWindowsPhone(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'Windows Phone')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'Windows Phone'))
+        {
             $os->setIsMobile(true);
             $os->setName($os::WINDOWS_PHONE);
             // Windows version
-            if (preg_match('/Windows Phone ([\d\.]*)/i', $userAgent->getUserAgentString(), $matches)) {
-                if (isset($matches[1])) {
+            if (preg_match('/Windows Phone ([\d\.]*)/i', $userAgent->getUserAgentString(), $matches))
+            {
+                if (isset($matches[1]))
+                {
                     $os->setVersion((float) $matches[1]);
                 }
             }
@@ -229,7 +245,8 @@ class OsDetector implements DetectorInterface
      */
     private static function checkSymbOS(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'SymbOS')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'SymbOS'))
+        {
             $os->setName($os::SYMBOS);
 
             return true;
@@ -245,7 +262,8 @@ class OsDetector implements DetectorInterface
      */
     private static function checkLinux(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'Linux')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'Linux'))
+        {
             $os->setVersion($os::VERSION_UNKNOWN);
             $os->setName($os::LINUX);
 
@@ -262,7 +280,8 @@ class OsDetector implements DetectorInterface
      */
     private static function checkNokia(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'Nokia')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'Nokia'))
+        {
             $os->setVersion($os::VERSION_UNKNOWN);
             $os->setName($os::NOKIA);
             $os->setIsMobile(true);
@@ -280,26 +299,33 @@ class OsDetector implements DetectorInterface
      */
     private static function checkBlackBerry(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'BlackBerry')) {
-            if (false !== stripos($userAgent->getUserAgentString(), 'Version/')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'BlackBerry'))
+        {
+            if (false !== stripos($userAgent->getUserAgentString(), 'Version/'))
+            {
                 $aresult = explode('Version/', $userAgent->getUserAgentString());
-                if (isset($aresult[1])) {
+                if (isset($aresult[1]))
+                {
                     $aversion = explode(' ', $aresult[1]);
                     $os->setVersion($aversion[0]);
                 }
-            } else {
+            } else
+            {
                 $os->setVersion($os::VERSION_UNKNOWN);
             }
             $os->setName($os::BLACKBERRY);
             $os->setIsMobile(true);
 
             return true;
-        } elseif (false !== stripos($userAgent->getUserAgentString(), 'BB10')) {
+        } elseif (false !== stripos($userAgent->getUserAgentString(), 'BB10'))
+        {
             $aresult = explode('Version/10.', $userAgent->getUserAgentString());
-            if (isset($aresult[1])) {
+            if (isset($aresult[1]))
+            {
                 $aversion = explode(' ', $aresult[1]);
                 $os->setVersion('10.'.$aversion[0]);
-            } else {
+            } else
+            {
                 $os->setVersion('10');
             }
             $os->setName($os::BLACKBERRY);
@@ -318,12 +344,16 @@ class OsDetector implements DetectorInterface
      */
     private static function checkAndroid(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'Android')) {
-            if (preg_match('/Android ([\d\.]*)/i', $userAgent->getUserAgentString(), $matches)) {
-                if (isset($matches[1])) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'Android'))
+        {
+            if (preg_match('/Android ([\d\.]*)/i', $userAgent->getUserAgentString(), $matches))
+            {
+                if (isset($matches[1]))
+                {
                     $os->setVersion($matches[1]);
                 }
-            } else {
+            } else
+            {
                 $os->setVersion($os::VERSION_UNKNOWN);
             }
             $os->setName($os::ANDROID);
@@ -342,7 +372,8 @@ class OsDetector implements DetectorInterface
      */
     private static function checkFreeBSD(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'FreeBSD')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'FreeBSD'))
+        {
             $os->setVersion($os::VERSION_UNKNOWN);
             $os->setName($os::FREEBSD);
 
@@ -359,7 +390,8 @@ class OsDetector implements DetectorInterface
      */
     private static function checkOpenBSD(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'OpenBSD')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'OpenBSD'))
+        {
             $os->setVersion($os::VERSION_UNKNOWN);
             $os->setName($os::OPENBSD);
 
@@ -376,7 +408,8 @@ class OsDetector implements DetectorInterface
      */
     private static function checkSunOS(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'SunOS')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'SunOS'))
+        {
             $os->setVersion($os::VERSION_UNKNOWN);
             $os->setName($os::SUNOS);
 
@@ -393,7 +426,8 @@ class OsDetector implements DetectorInterface
      */
     private static function checkNetBSD(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'NetBSD')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'NetBSD'))
+        {
             $os->setVersion($os::VERSION_UNKNOWN);
             $os->setName($os::NETBSD);
 
@@ -410,7 +444,8 @@ class OsDetector implements DetectorInterface
      */
     private static function checkOpenSolaris(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'OpenSolaris')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'OpenSolaris'))
+        {
             $os->setVersion($os::VERSION_UNKNOWN);
             $os->setName($os::OPENSOLARIS);
 
@@ -427,7 +462,8 @@ class OsDetector implements DetectorInterface
      */
     private static function checkOS2(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'OS\/2')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'OS\/2'))
+        {
             $os->setVersion($os::VERSION_UNKNOWN);
             $os->setName($os::OS2);
 
@@ -444,7 +480,8 @@ class OsDetector implements DetectorInterface
      */
     private static function checkBeOS(Os $os, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'BeOS')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'BeOS'))
+        {
             $os->setVersion($os::VERSION_UNKNOWN);
             $os->setName($os::BEOS);
 

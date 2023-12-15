@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_single",
     "settings": {
         "color": "green",
@@ -12,4 +18,3 @@
         "white": 0
     }
 }';
- ?>

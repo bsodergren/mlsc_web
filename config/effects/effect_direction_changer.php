@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_direction_changer",
     "settings": {
         "bar_length": 5,
@@ -11,4 +17,3 @@
         "random_color": true
     }
 }';
- ?>

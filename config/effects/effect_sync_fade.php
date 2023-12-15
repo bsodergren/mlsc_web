@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_sync_fade",
     "settings": {
         "gradient": "spectral",
@@ -7,4 +13,3 @@
         "speed": 1
     }
 }';
- ?>

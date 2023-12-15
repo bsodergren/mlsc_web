@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_pendulum",
     "settings": {
         "change_color": false,
@@ -9,4 +15,3 @@
         "speed": 5
     }
 }';
- ?>

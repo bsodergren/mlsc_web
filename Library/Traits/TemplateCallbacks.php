@@ -1,4 +1,9 @@
 <?php
+/**
+ *
+ * MLS Script
+ *
+ */
 
 namespace MLSC\Traits;
 
@@ -10,41 +15,47 @@ use MLSC\Bundle\Template\Theme\Navbar;
 trait TemplateCallbacks
 {
     private $hidden = '';
+
     private function arrayToString($array, $value, $end)
     {
         array_shift($array);
         array_pop($array);
         $array[] = $value;
         $array[] = $end;
-        return $this->hidden . implode("", $array);
+
+        return $this->hidden.implode('', $array);
     }
-
-
 
     private function matchSetting($array, $key, $returnValue = true)
     {
         $setting = $this->params;
-        $res = '';
-        if (array_key_exists($array[$key], $setting)) {
-            if($array[$key] == "custom_color") {
+        $res     = '';
+        if (\array_key_exists($array[$key], $setting))
+        {
+            if ('custom_color' == $array[$key])
+            {
                 list($red, $green, $blue) = $setting[$array[$key]];
-                $res = ' value="rgb(' . $red . ', ' . $green . ', ' . $blue . ')"';
-            } else {
-
+                $res                      = ' value="rgb('.$red.', '.$green.', '.$blue.')"';
+            } else
+            {
                 $value = $setting[$array[$key]];
 
-                if($returnValue === true) {
-                    $res = ' value="' . $value . '"';
-                } else {
+                if (true === $returnValue)
+                {
+                    $res = ' value="'.$value.'"';
+                } else
+                {
                     $res = $value;
                 }
 
-                if ($value === true) {
-                    $this->hidden = "<input type='hidden' name='" . $array[$key] . ":boolean' value='off'>";
-                    $res =  " value='on' CHECKED";
+                if (true === $value)
+                {
+                    $this->hidden = "<input type='hidden' name='".$array[$key].":boolean' value='off'>";
+                    $res          =  " value='on' CHECKED";
                 }
-                if ($value === false) {
-                    $res =  " ";
+                if (false === $value)
+                {
+                    $res =  ' ';
                 }
             }
         }
@@ -54,12 +65,13 @@ trait TemplateCallbacks
 
     private function varReplace($key)
     {
-        if(array_key_exists($key, $this->params)) {
+        if (\array_key_exists($key, $this->params))
+        {
             return $this->params[$key];
-        } else {
+        } else
+        {
             return '';
         }
-
     }
 
     public function callback_replace($matches)
@@ -69,71 +81,76 @@ trait TemplateCallbacks
 
     public function callback_colorpicker_html($matches)
     {
-
         $setting = $this->params;
-        if (array_key_exists('custom_color', $setting)) {
-
+        if (\array_key_exists('custom_color', $setting))
+        {
             list($red, $green, $blue) = $setting['custom_color'];
 
-            $color = 'rgb(' . $red . ', ' . $green . ', ' . $blue . ')';
-            $rgb = Rgb::fromString($color);
-            $hex = $rgb->toHex();
-            $color_value = "#" . $hex->red() . $hex->green() . $hex->blue();
+            $color                    = 'rgb('.$red.', '.$green.', '.$blue.')';
+            $rgb                      = Rgb::fromString($color);
+            $hex                      = $rgb->toHex();
+            $color_value              = '#'.$hex->red().$hex->green().$hex->blue();
+
             return Template::GetHTML('forms/rgb_picker', ['HEX_VALUE' => $color_value]);
         }
-
-
     }
-
 
     public function callback_span_html($matches)
     {
-        if (is_array($matches)) {
-            if (array_key_exists(2, $matches)) {
+        if (\is_array($matches))
+        {
+            if (\array_key_exists(2, $matches))
+            {
                 $value = $this->matchSetting($matches, 2, false);
-                return $this->arrayToString($matches, $value, "</span>");
+
+                return $this->arrayToString($matches, $value, '</span>');
             }
         }
     }
-
 
     public function callback_input_html($matches)
     {
         $setting = $this->params;
-        $res = '';
-        if (is_array($matches)) {
-            if (array_key_exists(2, $matches)) {
+        $res     = '';
+        if (\is_array($matches))
+        {
+            if (\array_key_exists(2, $matches))
+            {
                 $value = $this->matchSetting($matches, 2);
-                return $this->arrayToString($matches, $value, ">");
+
+                return $this->arrayToString($matches, $value, '>');
             }
         }
     }
 
-
     public function callback_selectbox_html($matches)
     {
-
         $select_options = '';
 
-        $setting = $this->params;
+        $setting        = $this->params;
 
-        if (array_key_exists(2, $matches)) {
+        if (\array_key_exists(2, $matches))
+        {
             $value = '';
 
             $value = $this->matchSetting($matches, 2, false);
 
-            if (str_contains($matches[4], "colors")) {
-                $select_options = HTMLForms::getSelectOptions("colors", $value);
+            if (str_contains($matches[4], 'colors'))
+            {
+                $select_options = HTMLForms::getSelectOptions('colors', $value);
             }
-            if (str_contains($matches[4], "gradients")) {
-                $select_options = HTMLForms::getSelectOptions("gradients", $value);
+            if (str_contains($matches[4], 'gradients'))
+            {
+                $select_options = HTMLForms::getSelectOptions('gradients', $value);
             }
         }
 
-        return $this->arrayToString($matches, $select_options, "</select>");
+        return $this->arrayToString($matches, $select_options, '</select>');
     }
-    public function callback_getNavLinks_html($matches){
-        $html = '';
+
+    public function callback_getNavLinks_html($matches)
+    {
+        $html     = '';
         $NavItems = [
             ['URL' => 'index.php',
             'TEXT' => 'Dashboard',
@@ -147,44 +164,43 @@ trait TemplateCallbacks
             'TEXT' => 'Active Effect',
             'ICON' => 'icon-settings'],
     ];
-    foreach($NavItems as $link) {
-        
-        $html .= Template::GetHTML('base/navbar/menu_link', $link);
-    }
-    return $html;
+        foreach ($NavItems as $link)
+        {
+            $html .= Template::GetHTML('base/navbar/menu_link', $link);
+        }
+
+        return $html;
     }
 
     public function callback_getEffects_html($matches)
     {
         $current_effect = '';
 
-        $effect_html = '';
+        $effect_html    = '';
 
-
-        if (array_key_exists('effect', $_REQUEST)) {
+        if (\array_key_exists('effect', $_REQUEST))
+        {
             $current_effect = $_REQUEST['effect'];
         }
 
-
-
-        if (array_key_exists(1, $matches)) {
+        if (\array_key_exists(1, $matches))
+        {
             $effect_html = Navbar::getEffectList('effects.php', $current_effect);
         }
-
 
         return $effect_html;
     }
 
-   
-
     public function callback_include_html($matches)
     {
+        $params        = [];
 
-        $params = [];
-
-        if (array_key_exists(3, $matches)) {
-            if (array_key_exists(4, $matches)) {
-                if ($matches[4] == '') {
+        if (\array_key_exists(3, $matches))
+        {
+            if (\array_key_exists(4, $matches))
+            {
+                if ('' == $matches[4])
+                {
                     return '';
                 }
                 $params[$matches[3]] = $matches[4];
@@ -193,7 +209,8 @@ trait TemplateCallbacks
 
         $template_file = $matches[1];
 
-        $html = $this->return($template_file, $params);
+        $html          = $this->return($template_file, $params);
+
         return $html;
     }
 }

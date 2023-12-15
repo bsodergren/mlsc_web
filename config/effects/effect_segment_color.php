@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_segment_color",
     "settings": {
         "segment_01_color": "red",
@@ -34,4 +40,3 @@
         "segment_10_start": 0
     }
 }';
- ?>

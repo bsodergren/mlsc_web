@@ -1,6 +1,8 @@
 <?php
 /**
- * Bsodergren\utm Media tool for load flags
+ *
+ * MLS Script
+ *
  */
 
 namespace MLSC\Bundle\Template\Browser;
@@ -10,24 +12,24 @@ namespace MLSC\Bundle\Template\Browser;
  */
 class Os
 {
-    public const UNKNOWN = 'unknown';
-    public const OSX = 'OS X';
-    public const IOS = 'iOS';
-    public const SYMBOS = 'SymbOS';
-    public const WINDOWS = 'Windows';
-    public const ANDROID = 'Android';
-    public const LINUX = 'Linux';
-    public const NOKIA = 'Nokia';
-    public const BLACKBERRY = 'BlackBerry';
-    public const FREEBSD = 'FreeBSD';
-    public const OPENBSD = 'OpenBSD';
-    public const NETBSD = 'NetBSD';
-    public const OPENSOLARIS = 'OpenSolaris';
-    public const SUNOS = 'SunOS';
-    public const OS2 = 'OS2';
-    public const BEOS = 'BeOS';
-    public const WINDOWS_PHONE = 'Windows Phone';
-    public const CHROME_OS = 'Chrome OS';
+    public const UNKNOWN         = 'unknown';
+    public const OSX             = 'OS X';
+    public const IOS             = 'iOS';
+    public const SYMBOS          = 'SymbOS';
+    public const WINDOWS         = 'Windows';
+    public const ANDROID         = 'Android';
+    public const LINUX           = 'Linux';
+    public const NOKIA           = 'Nokia';
+    public const BLACKBERRY      = 'BlackBerry';
+    public const FREEBSD         = 'FreeBSD';
+    public const OPENBSD         = 'OpenBSD';
+    public const NETBSD          = 'NetBSD';
+    public const OPENSOLARIS     = 'OpenSolaris';
+    public const SUNOS           = 'SunOS';
+    public const OS2             = 'OS2';
+    public const BEOS            = 'BeOS';
+    public const WINDOWS_PHONE   = 'Windows Phone';
+    public const CHROME_OS       = 'Chrome OS';
 
     public const VERSION_UNKNOWN = 'unknown';
 
@@ -44,7 +46,7 @@ class Os
     /**
      * @var bool
      */
-    private $isMobile = false;
+    private $isMobile            = false;
 
     /**
      * @var UserAgent
@@ -58,11 +60,14 @@ class Os
      */
     public function __construct($userAgent = null)
     {
-        if ($userAgent instanceof UserAgent) {
+        if ($userAgent instanceof UserAgent)
+        {
             $this->setUserAgent($userAgent);
-        } elseif (null === $userAgent || \is_string($userAgent)) {
+        } elseif (null === $userAgent || \is_string($userAgent))
+        {
             $this->setUserAgent(new UserAgent($userAgent));
-        } else {
+        } else
+        {
             throw new InvalidArgumentException();
         }
     }
@@ -74,7 +79,8 @@ class Os
      */
     public function getName()
     {
-        if (!isset($this->name)) {
+        if (!isset($this->name))
+        {
             OsDetector::detect($this, $this->getUserAgent());
         }
 
@@ -102,9 +108,11 @@ class Os
      */
     public function getVersion()
     {
-        if (isset($this->version)) {
+        if (isset($this->version))
+        {
             return (string) $this->version;
-        } else {
+        } else
+        {
             OsDetector::detect($this, $this->getUserAgent());
 
             return (string) $this->version;
@@ -132,7 +140,8 @@ class Os
      */
     public function getIsMobile()
     {
-        if (!isset($this->name)) {
+        if (!isset($this->name))
+        {
             OsDetector::detect($this, $this->getUserAgent());
         }
 

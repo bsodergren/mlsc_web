@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_energy",
     "settings": {
         "b_multiplier": 1,
@@ -10,4 +16,3 @@
         "scale": 1
     }
 }';
- ?>

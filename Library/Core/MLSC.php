@@ -1,53 +1,51 @@
 <?php
 /**
- * Command like Metatag writer for video files.
+ *
+ * MLS Script
+ *
  */
 
 namespace MLSC\Core;
 
-use MLSC\Core\MLSCApi;
-use MLSC\Core\Device;
-use MLSC\Utilities\MLSCArray;
-
 class MLSC
 {
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
-    public  static function setDeviceBrightness($brightness, $device_id = 'all')
+    public static function setDeviceBrightness($brightness, $device_id = 'all')
     {
         global $brightness_json;
 
         $device_json  = json_encode($brightness_json);
         $curr         = 0;
         $device_array = Device::deviceList($device_id);
-        foreach ($device_array as $dev_id) {
+        foreach ($device_array as $dev_id)
+        {
             unset($tmp_device_json);
 
-            $tmp_device_json = '{"device":"' . $dev_id . '","settings":{"led_brightness":' . $brightness . '}}';
-            //$tmp_device_json = str_replace('%%DEVICE_ID%%', $dev_id, $device_json);
-            //$tmp_device_json = str_replace("'%%BRIGHTNESS%%'", $brightness, $tmp_device_json);
+            $tmp_device_json = '{"device":"'.$dev_id.'","settings":{"led_brightness":'.$brightness.'}}';
+            // $tmp_device_json = str_replace('%%DEVICE_ID%%', $dev_id, $device_json);
+            // $tmp_device_json = str_replace("'%%BRIGHTNESS%%'", $brightness, $tmp_device_json);
 
             $get_data        = MLSCApi::post(DEV_SETTINGS_URL, $tmp_device_json);
-            $response_array = json_decode($get_data, true);
-            //++$curr;
+            $response_array  = json_decode($get_data, true);
+            // ++$curr;
         }
 
         return $response_array;
     }
 
-    public static  function getDeviceBrightness($device_id = "device_0")
+    public static function getDeviceBrightness($device_id = 'device_0')
     {
-
         Device::deviceId($device_id);
 
-        $getURL = DEV_SETTINGS_URL . '?device=' . $device_id . '&setting_key=led_brightness';
+        $getURL   = DEV_SETTINGS_URL.'?device='.$device_id.'&setting_key=led_brightness';
 
         $get_data = MLSCApi::get($getURL, '');
 
         return json_decode($get_data, true);
     }
-
-
 
     public static function getColors()
     {
@@ -90,5 +88,4 @@ class MLSC
     }
 
     */
-
 }

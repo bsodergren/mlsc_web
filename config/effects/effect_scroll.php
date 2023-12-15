@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_scroll",
     "settings": {
         "blur": 0.5,
@@ -16,4 +22,3 @@
         "mirror": true
     }
 }';
- ?>

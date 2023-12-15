@@ -1,6 +1,8 @@
 <?php
 /**
- * Bsodergren\utm Media tool for load flags
+ *
+ * MLS Script
+ *
  */
 
 namespace MLSC\Bundle\Template\Browser;
@@ -31,7 +33,8 @@ class DeviceDetector implements DetectorInterface
      */
     private static function checkIpad(Device $device, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'ipad')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'ipad'))
+        {
             $device->setName(Device::IPAD);
 
             return true;
@@ -47,7 +50,8 @@ class DeviceDetector implements DetectorInterface
      */
     private static function checkIphone(Device $device, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'iphone;')) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'iphone;'))
+        {
             $device->setName(Device::IPHONE);
 
             return true;
@@ -63,8 +67,10 @@ class DeviceDetector implements DetectorInterface
      */
     private static function checkWindowsPhone(Device $device, UserAgent $userAgent)
     {
-        if (false !== stripos($userAgent->getUserAgentString(), 'Windows Phone')) {
-            if (preg_match('/Microsoft; (Lumia [^)]*)\)/', $userAgent->getUserAgentString(), $matches)) {
+        if (false !== stripos($userAgent->getUserAgentString(), 'Windows Phone'))
+        {
+            if (preg_match('/Microsoft; (Lumia [^)]*)\)/', $userAgent->getUserAgentString(), $matches))
+            {
                 $device->setName($matches[1]);
 
                 return true;
@@ -85,7 +91,8 @@ class DeviceDetector implements DetectorInterface
      */
     private static function checkSamsungPhone(Device $device, UserAgent $userAgent)
     {
-        if (preg_match('/SAMSUNG SM-([^ ]*)/i', $userAgent->getUserAgentString(), $matches)) {
+        if (preg_match('/SAMSUNG SM-([^ ]*)/i', $userAgent->getUserAgentString(), $matches))
+        {
             $device->setName(str_ireplace('SAMSUNG', 'Samsung', $matches[0]));
 
             return true;

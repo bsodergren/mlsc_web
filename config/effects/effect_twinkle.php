@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_twinkle",
     "settings": {
         "blur": 1,
@@ -11,4 +17,3 @@
         "stars_length": 5
     }
 }';
- ?>

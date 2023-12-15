@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_rods",
     "settings": {
         "change_color": true,
@@ -12,4 +18,3 @@
         "speed": 2
     }
 }';
- ?>

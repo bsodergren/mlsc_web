@@ -1,10 +1,14 @@
 <?php
+/**
+ *
+ * MLS Script
+ *
+ */
 
 namespace MLSC\Bundle\Template\Utils;
 
 class Colors
 {
-
     private $foreground_colors = [];
 
     private $background_colors = [];
@@ -31,30 +35,32 @@ class Colors
         $this->foreground_colors['light_gray']   = '0;37';
         $this->foreground_colors['white']        = '1;37';
 
-        $this->background_colors['black']      = '40';
-        $this->background_colors['red']        = '41';
-        $this->background_colors['green']      = '42';
-        $this->background_colors['yellow']     = '43';
-        $this->background_colors['blue']       = '44';
-        $this->background_colors['magenta']    = '45';
-        $this->background_colors['cyan']       = '46';
-        $this->background_colors['light_gray'] = '47';
-    } //end __construct()
+        $this->background_colors['black']        = '40';
+        $this->background_colors['red']          = '41';
+        $this->background_colors['green']        = '42';
+        $this->background_colors['yellow']       = '43';
+        $this->background_colors['blue']         = '44';
+        $this->background_colors['magenta']      = '45';
+        $this->background_colors['cyan']         = '46';
+        $this->background_colors['light_gray']   = '47';
+    } // end __construct()
 
     public function getClassColor()
     {
-        if (isset($this->foreground_colors[$this->fg_color])) {
-            return 'color:' . $this->fg_color . ';';
+        if (isset($this->foreground_colors[$this->fg_color]))
+        {
+            return 'color:'.$this->fg_color.';';
         }
+
         return '';
     }
 
     public function getColoredDiv($html, $background_color)
     {
-
         $class_tag = '';
-        if (isset($this->background_colors[$background_color])) {
-            $class_tag = "class";
+        if (isset($this->background_colors[$background_color]))
+        {
+            $class_tag = 'class';
         }
     }
 
@@ -62,45 +68,42 @@ class Colors
     public function getColoredSpan($string, $foreground_color = null, $background_color = null)
     {
         $this->fg_color = $foreground_color;
-        $colored_string = '<span style="' . $this->getClassColor() . '">' . $string . '</span>';;
-        return $colored_string;
-    } //end getColoredHTML()
+        $colored_string = '<span style="'.$this->getClassColor().'">'.$string.'</span>';
 
+        return $colored_string;
+    } // end getColoredHTML()
 
     public function getColoredString($string, $foreground_color = null, $background_color = null)
     {
         $colored_string = '';
 
         // Check if given foreground color found
-        if (isset($this->foreground_colors[$foreground_color])) {
-            $colored_string .= "\033[" . $this->foreground_colors[$foreground_color] . 'm';
+        if (isset($this->foreground_colors[$foreground_color]))
+        {
+            $colored_string .= "\033[".$this->foreground_colors[$foreground_color].'m';
         }
 
         // Check if given background color found
-        if (isset($this->background_colors[$background_color])) {
-            $colored_string .= "\033[" . $this->background_colors[$background_color] . 'm';
+        if (isset($this->background_colors[$background_color]))
+        {
+            $colored_string .= "\033[".$this->background_colors[$background_color].'m';
         }
 
         // Add string and end coloring
-        $colored_string .= $string . "\033[0m";
+        $colored_string .= $string."\033[0m";
 
         return $colored_string;
-    } //end getColoredString()
-
+    } // end getColoredString()
 
     // Returns all foreground color names
     public function getForegroundColors()
     {
         return array_keys($this->foreground_colors);
-    } //end getForegroundColors()
-
+    } // end getForegroundColors()
 
     // Returns all background color names
     public function getBackgroundColors()
     {
         return array_keys($this->background_colors);
-    } //end getBackgroundColors()
-
-
-} //end class
-?>
+    } // end getBackgroundColors()
+} // end class

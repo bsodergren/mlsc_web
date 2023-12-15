@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_fireplace",
     "settings": {
         "blur": 0.5,
@@ -23,4 +29,3 @@
         "use_color_variation": true
     }
 }';
- ?>

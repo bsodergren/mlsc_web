@@ -1,4 +1,10 @@
 <?php
+/**
+ *
+ * MLS Script
+ *
+ */
+
 return '{
     "effect": "effect_bubble",
     "settings": {
@@ -11,4 +17,3 @@ return '{
         "speed": 2
     }
 }';
- ?>

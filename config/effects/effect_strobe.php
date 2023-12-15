@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_strobe",
     "settings": {
         "color": "white",
@@ -13,4 +19,3 @@
         "white": 0
     }
 }';
- ?>

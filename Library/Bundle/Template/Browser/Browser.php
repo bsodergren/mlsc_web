@@ -1,6 +1,8 @@
 <?php
 /**
- * Bsodergren\utm Media tool for load flags
+ *
+ * MLS Script
+ *
  */
 
 namespace MLSC\Bundle\Template\Browser;
@@ -10,48 +12,48 @@ namespace MLSC\Bundle\Template\Browser;
  */
 class Browser
 {
-    public const UNKNOWN = 'unknown';
-    public const VIVALDI = 'Vivaldi';
-    public const OPERA = 'Opera';
-    public const OPERA_MINI = 'Opera Mini';
-    public const WEBTV = 'WebTV';
-    public const IE = 'Internet Explorer';
-    public const POCKET_IE = 'Pocket Internet Explorer';
-    public const KONQUEROR = 'Konqueror';
-    public const ICAB = 'iCab';
-    public const OMNIWEB = 'OmniWeb';
-    public const FIREBIRD = 'Firebird';
-    public const FIREFOX = 'Firefox';
-    public const SEAMONKEY = 'SeaMonkey';
-    public const ICEWEASEL = 'Iceweasel';
-    public const SHIRETOKO = 'Shiretoko';
-    public const MOZILLA = 'Mozilla';
-    public const AMAYA = 'Amaya';
-    public const LYNX = 'Lynx';
-    public const WKHTMLTOPDF = 'wkhtmltopdf';
-    public const SAFARI = 'Safari';
-    public const SAMSUNG_BROWSER = 'SamsungBrowser';
-    public const CHROME = 'Chrome';
-    public const NAVIGATOR = 'Navigator';
-    public const GOOGLEBOT = 'GoogleBot';
-    public const SLURP = 'Yahoo! Slurp';
-    public const W3CVALIDATOR = 'W3C Validator';
-    public const BLACKBERRY = 'BlackBerry';
-    public const ICECAT = 'IceCat';
-    public const NOKIA_S60 = 'Nokia S60 OSS Browser';
-    public const NOKIA = 'Nokia Browser';
-    public const MSN = 'MSN Browser';
-    public const MSNBOT = 'MSN Bot';
+    public const UNKNOWN            = 'unknown';
+    public const VIVALDI            = 'Vivaldi';
+    public const OPERA              = 'Opera';
+    public const OPERA_MINI         = 'Opera Mini';
+    public const WEBTV              = 'WebTV';
+    public const IE                 = 'Internet Explorer';
+    public const POCKET_IE          = 'Pocket Internet Explorer';
+    public const KONQUEROR          = 'Konqueror';
+    public const ICAB               = 'iCab';
+    public const OMNIWEB            = 'OmniWeb';
+    public const FIREBIRD           = 'Firebird';
+    public const FIREFOX            = 'Firefox';
+    public const SEAMONKEY          = 'SeaMonkey';
+    public const ICEWEASEL          = 'Iceweasel';
+    public const SHIRETOKO          = 'Shiretoko';
+    public const MOZILLA            = 'Mozilla';
+    public const AMAYA              = 'Amaya';
+    public const LYNX               = 'Lynx';
+    public const WKHTMLTOPDF        = 'wkhtmltopdf';
+    public const SAFARI             = 'Safari';
+    public const SAMSUNG_BROWSER    = 'SamsungBrowser';
+    public const CHROME             = 'Chrome';
+    public const NAVIGATOR          = 'Navigator';
+    public const GOOGLEBOT          = 'GoogleBot';
+    public const SLURP              = 'Yahoo! Slurp';
+    public const W3CVALIDATOR       = 'W3C Validator';
+    public const BLACKBERRY         = 'BlackBerry';
+    public const ICECAT             = 'IceCat';
+    public const NOKIA_S60          = 'Nokia S60 OSS Browser';
+    public const NOKIA              = 'Nokia Browser';
+    public const MSN                = 'MSN Browser';
+    public const MSNBOT             = 'MSN Bot';
     public const NETSCAPE_NAVIGATOR = 'Netscape Navigator';
-    public const GALEON = 'Galeon';
-    public const NETPOSITIVE = 'NetPositive';
-    public const PHOENIX = 'Phoenix';
-    public const GSA = 'Google Search Appliance';
-    public const YANDEX = 'Yandex';
-    public const EDGE = 'Edge';
-    public const DRAGON = 'Dragon';
+    public const GALEON             = 'Galeon';
+    public const NETPOSITIVE        = 'NetPositive';
+    public const PHOENIX            = 'Phoenix';
+    public const GSA                = 'Google Search Appliance';
+    public const YANDEX             = 'Yandex';
+    public const EDGE               = 'Edge';
+    public const DRAGON             = 'Dragon';
 
-    public const VERSION_UNKNOWN = 'unknown';
+    public const VERSION_UNKNOWN    = 'unknown';
 
     /**
      * @var UserAgent
@@ -70,22 +72,22 @@ class Browser
     /**
      * @var bool
      */
-    private $isRobot = false;
+    private $isRobot                = false;
 
     /**
      * @var bool
      */
-    private $isChromeFrame = false;
+    private $isChromeFrame          = false;
 
     /**
      * @var bool
      */
-    private $isFacebookWebView = false;
+    private $isFacebookWebView      = false;
 
     /**
      * @var bool
      */
-    private $isCompatibilityMode = false;
+    private $isCompatibilityMode    = false;
 
     /**
      * @param string|UserAgent|null $userAgent
@@ -94,11 +96,14 @@ class Browser
      */
     public function __construct($userAgent = null)
     {
-        if ($userAgent instanceof UserAgent) {
+        if ($userAgent instanceof UserAgent)
+        {
             $this->setUserAgent($userAgent);
-        } elseif (null === $userAgent || \is_string($userAgent)) {
+        } elseif (null === $userAgent || \is_string($userAgent))
+        {
             $this->setUserAgent(new UserAgent($userAgent));
-        } else {
+        } else
+        {
             throw new InvalidArgumentException();
         }
     }
@@ -124,7 +129,8 @@ class Browser
      */
     public function getName()
     {
-        if (!isset($this->name)) {
+        if (!isset($this->name))
+        {
             BrowserDetector::detect($this, $this->getUserAgent());
         }
 
@@ -164,7 +170,8 @@ class Browser
      */
     public function getVersion()
     {
-        if (!isset($this->name)) {
+        if (!isset($this->name))
+        {
             BrowserDetector::detect($this, $this->getUserAgent());
         }
 
@@ -192,7 +199,8 @@ class Browser
      */
     public function getIsRobot()
     {
-        if (!isset($this->name)) {
+        if (!isset($this->name))
+        {
             BrowserDetector::detect($this, $this->getUserAgent());
         }
 
@@ -226,7 +234,8 @@ class Browser
      */
     public function getIsChromeFrame()
     {
-        if (!isset($this->name)) {
+        if (!isset($this->name))
+        {
             BrowserDetector::detect($this, $this->getUserAgent());
         }
 
@@ -260,7 +269,8 @@ class Browser
      */
     public function getIsFacebookWebView()
     {
-        if (!isset($this->name)) {
+        if (!isset($this->name))
+        {
             BrowserDetector::detect($this, $this->getUserAgent());
         }
 

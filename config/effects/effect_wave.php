@@ -1,5 +1,11 @@
 <?php
- return '{
+/**
+ *
+ * MLS Script
+ *
+ */
+
+return '{
     "effect": "effect_wave",
     "settings": {
         "color_flash": "white",
@@ -9,4 +15,3 @@
         "wipe_speed": 2
     }
 }';
- ?>
