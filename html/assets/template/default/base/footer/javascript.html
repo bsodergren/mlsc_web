@@ -1,0 +1,68 @@
+<script type="text/javascript">
+
+    // Init and load all settings.
+    $(() => {
+        // Allow to scroll sidebar when page is reloaded and mouse is already on top of sidebar.
+        // $('.navbar-content').trigger('mouseover');
+
+        // $('#settings_list').slideDown();
+        // $('.tagin-input').prop('disabled', true);
+
+        let outputTypes = {};
+        /**
+         * Show corresponding theme icon.
+         * @param {string} theme
+         */
+        const setThemeIcon = (theme) => {
+            if (theme === 'dark') {
+                $('#theme-indicator').addClass('icon-sun');
+                $('#theme-indicator').removeClass('icon-moon');
+                return;
+            }
+            $('#theme-indicator').addClass('icon-moon');
+            $('#theme-indicator').removeClass('icon-sun');
+        }
+
+        /**
+         * Toggle theme and save to localStorage.
+         */
+        const toggleTheme = () => {
+            if (localStorage.theme === 'dark') {
+                $('html').removeClass('dark');
+                localStorage.theme = 'light';
+            } else {
+                $('html').addClass('dark');
+                localStorage.theme = 'dark';
+            }
+            setThemeIcon(localStorage.theme);
+        }
+
+
+        // Set LED strip brightness slider badge.
+        $('input[type=range]').on('input', e => {
+            $(`span[for='${$(e.currentTarget).attr('id')}']`).text(e.currentTarget.value);
+        });
+
+    });
+
+    function hexToRgb(hex) {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
+    }
+
+    let custom_colorInput = document.getElementById('custom_color');
+    function changeColor(event) {
+        let hex = event.target.value;
+        console.log(document.getElementById("custom_color").value);
+        console.log(event.target.value);
+        let colorValue = 'rgb(' + hexToRgb(hex).r + ', ' + hexToRgb(hex).g + ', ' + hexToRgb(hex).b + ')';
+        document.getElementById("custom_color").value = colorValue;
+
+
+
+    }
+</script>

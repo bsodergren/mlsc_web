@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-header">
+        <h5>Strobe Effect Settings</h5>
+    </div>
+    <div class="card-block">
+        <p>Edit the Strobe effect.</p>
+        <form id="settingsForm" action="%%PROCESS_URL%%" method="post" novalidate autocomplete="off">
+            <input type="hidden" id="settingsIdentifier" name="action" value="%%PROCESS_ACTION%%">
+            <input type="hidden" name="return_url" value="%%RETURN_URL%%">
+            <input type="hidden" id="effectIdentifier" name="effectIdentifier" value="effect_strobe">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Single Color</label>
+                        <select name="color:string" id="color" class="form-control colors setting_input"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Speed <span for="speed" class="mb-0 badge badge-secondary"></span></label>
+                        <input name="speed:number" id="speed" type="range" class="custom-range setting_input" min="1" max="100" step="1" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label>Custom Color</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text pr-4" id="color_picker"></span>
+                        </div>
+                        <input name="custom_color:rgb" type="text" class="form-control setting_input color_input" id="custom_color" spellcheck="false">
+                    </div>
+                    <div class="custom-control custom-checkbox my-2">
+                        <input name="use_custom_color:boolean" type="checkbox" class="custom-control-input setting_input" id="use_custom_color">
+                        <label class="custom-control-label" for="use_custom_color">Use Custom Color</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>White Channel (RGBW), only for SK6812 <span for="white" class="mb-0 badge badge-secondary"></span></label>
+                        <input name="white:number" id="white" type="range" class="custom-range setting_input" min="0" max="255" step="" required>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 d-flex flex-md-row flex-column justify-content-md-end">
+                <button type="submit" id="save_btn" class="btn btn-success m-0">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

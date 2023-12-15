@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-header">
+        <h5>Wiggle Effect Settings</h5>
+    </div>
+    <div class="card-block">
+        <p>Edit the Wiggle effect.</p>
+        <form id="settingsForm" action="%%PROCESS_URL%%" method="post" novalidate autocomplete="off">
+            <input type="hidden" id="settingsIdentifier" name="action" value="%%PROCESS_ACTION%%">
+            <input type="hidden" name="return_url" value="%%RETURN_URL%%">
+            <input type="hidden" id="effectIdentifier" name="effectIdentifier" value="effect_wiggle">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Bar Color</label>
+                        <select name="color:string" id="color" class="form-control colors setting_input"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Bar Length <span for="bar_length" class="mb-0 badge badge-secondary"></span></label>
+                        <input name="bar_length:number" id="bar_length" type="range" class="custom-range setting_input" min="0" max="200" step="1" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Beat Color</label>
+                        <select name="beat_color:string" id="beat_color" class="form-control colors setting_input"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Decay <span for="decay" class="mb-0 badge badge-secondary"></span></label>
+                        <input name="decay:number" id="decay" type="range" class="custom-range setting_input" min="0" max="0.9" step="0.1" required>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 d-flex flex-md-row flex-column justify-content-md-end">
+                <button type="submit" id="save_btn" class="btn btn-success m-0">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

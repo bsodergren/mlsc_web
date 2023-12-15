@@ -1,0 +1,81 @@
+<div class="card">
+    <div class="card-header">
+        <h5>Scroll Effect Settings</h5>
+    </div>
+    <div class="card-block">
+        <p>Edit the Scroll effect.</p>
+        <form id="settingsForm" action="%%PROCESS_URL%%" method="post" novalidate autocomplete="off">
+            <input type="hidden" id="settingsIdentifier" name="action" value="%%PROCESS_ACTION%%">
+            <input type="hidden" name="return_url" value="%%RETURN_URL%%">
+            <input type="hidden" id="effectIdentifier" name="effectIdentifier" value="effect_scroll">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Low Controls</h5>
+                    <div class="form-group">
+                        <label>Low Color</label>
+                        <select name="lows_color:string" id="lows_color" class="form-control colors setting_input"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Speed Low <span for="low_speed" class="mb-0 badge badge-secondary"></span></label>
+                        <input name="low_speed:number" id="low_speed" type="range" class="custom-range setting_input" min="0" max="20" step="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Lows Multiplier <span for="lows_multiplier" class="mb-0 badge badge-secondary"></span></label>
+                        <input name="lows_multiplier:number" id="lows_multiplier" type="range" class="custom-range setting_input" min="0" max="10" step="0.1" required>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h5>Mid Controls</h5>
+                    <div class="form-group">
+                        <label>Mid Color</label>
+                        <select name="mids_color:string" id="mids_color" class="form-control colors setting_input"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Speed Mid <span for="mid_speed" class="mb-0 badge badge-secondary"></span></label>
+                        <input name="mid_speed:number" id="mid_speed" type="range" class="custom-range setting_input" min="0" max="20" step="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mids Multiplier <span for="mids_multiplier" class="mb-0 badge badge-secondary"></span></label>
+                        <input name="mids_multiplier:number" id="mids_multiplier" type="range" class="custom-range setting_input" min="0" max="10" step="0.1" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5>High Controls</h5>
+                    <div class="form-group">
+                        <label>High Color</label>
+                        <select name="high_color:string" id="high_color" class="form-control colors setting_input"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Speed High <span for="high_speed" class="mb-0 badge badge-secondary"></span></label>
+                        <input name="high_speed:number" id="high_speed" type="range" class="custom-range setting_input" min="0" max="20" step="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Highs Multiplier <span for="high_multiplier" class="mb-0 badge badge-secondary"></span></label>
+                        <input name="high_multiplier:number" id="high_multiplier" type="range" class="custom-range setting_input" min="0" max="10" step="0.1" required>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <h5>General Controls</h5>
+                    <div class="custom-control custom-checkbox my-2">
+                        <input name="mirror:boolean" type="checkbox" class="custom-control-input setting_input" id="mirror">
+                        <label class="custom-control-label" for="mirror">Mirror</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Decay <span for="decay" class="mb-0 badge badge-secondary"></span></label>
+                        <input name="decay:number" id="decay" type="range" class="custom-range setting_input" min="0" max="100" step="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Blur <span for="blur" class="mb-0 badge badge-secondary"></span></label>
+                        <input name="blur:number" id="blur" type="range" class="custom-range setting_input" min="0" max="25" step="0.1" required>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 d-flex flex-md-row flex-column justify-content-md-end">
+                <button type="submit" id="save_btn" class="btn btn-success m-0">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

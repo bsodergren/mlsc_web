@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILE} !-f
+RewriteRule static/(.+)$ http://lights.local:80/static/$1 [QSA,R,L]

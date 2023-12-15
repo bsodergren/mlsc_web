@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-header">
+        <h5>Spectrum Analyzer Effect Settings</h5>
+    </div>
+    <div class="card-block">
+        <p>Edit the Spectrum Analyzer effect.</p>
+        <form id="settingsForm" action="%%PROCESS_URL%%" method="post" novalidate autocomplete="off">
+            <input type="hidden" id="settingsIdentifier" name="action" value="%%PROCESS_ACTION%%">
+            <input type="hidden" name="return_url" value="%%RETURN_URL%%">
+            <input type="hidden" id="effectIdentifier" name="effectIdentifier" value="effect_spectrum_analyzer">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Color</label>
+                        <select name="color:string" id="color" class="form-control colors setting_input"></select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Spectrum Count <span for="spectrum_count" class="mb-0 badge badge-secondary"></span></label>
+                        <input name="spectrum_count:number" id="spectrum_count" type="range" class="custom-range mt-3 setting_input" min="0" max="24" step="1" required>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 d-flex flex-md-row flex-column justify-content-md-end">
+                <button type="submit" id="save_btn" class="btn btn-success m-0">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
