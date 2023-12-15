@@ -86,7 +86,6 @@ class HTMLDevice
     {
         $className = self::getDevicePath().'\\Navbar';
         if (class_exists($className)) {
-            dd("fds");
             return $className::Display($template, $params);
         }
     }

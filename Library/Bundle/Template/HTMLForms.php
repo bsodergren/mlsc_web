@@ -2,6 +2,7 @@
 
 namespace MLSC\Bundle\Template;
 
+use MLSC\Core\MLSC;
 use MLSC\Bundle\Template\Template;
 
 class HTMLForms
@@ -26,11 +27,11 @@ class HTMLForms
         $option_box = self::$select_templates . '/option';
 
         if($type == 'colors') {
-            $array =  getColors();
+            $array =  MLSC::getColors();
         }
 
         if($type == 'gradients') {
-            $array =  getGradients();
+            $array =  MLSC::getGradients();
 
         }
 

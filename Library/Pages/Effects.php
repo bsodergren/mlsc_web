@@ -4,20 +4,21 @@ namespace MLSC\Pages;
 
 use MLSC\Pages\Pages;
 use MLSC\Bundle\Template\Template;
+use MLSC\Core\Effects as CoreEffects;
 
 class Effects extends Pages
 {
     public static function run()
     {
-        
+
         $effect = '';
         if (array_key_exists('effect', $_REQUEST)) {
             $effect = $_REQUEST['effect'];
         }
 
-        $effect_settings = getDeviceEffect(1, $effect);
+        $effect_settings = \MLSC\Core\Effects::getDeviceEffect(1, $effect);
         $params = $effect_settings['settings'];
-        $params['PROCESS_URL'] = '/process.php';
+        $params['PROCESS_URL'] = $_SERVER['PHP_SELF'];
         $params['PROCESS_ACTION'] = 'effect';
         $params['RETURN_URL'] = $_SERVER['REQUEST_URI'];
 

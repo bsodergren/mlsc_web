@@ -7,18 +7,19 @@ namespace MLSC\Bundle\Template\Theme;
 
 use MLSC\Bundle\Template\Template;
 use MLSC\Bundle\Template\HTMLDocument;
+use MLSC\Core\Effects;
 
 class Navbar extends HTMLDocument
 {
-    // public static 
+    // public static
 
     public static function display($template = '', $params = [])
     {
         $doc = new HTMLDocument();
 
-    
 
-     
+
+
         return Template::GetHTML('base/navbar/navbar', $params);
     }
 
@@ -44,7 +45,7 @@ class Navbar extends HTMLDocument
         $effect_list_html = '';
         $effect_active_style = '';
 
-        $effect_array = getEffects();
+        $effect_array = Effects::getEffects();
         krsort($effect_array);
         foreach ($effect_array as $group => $array) {
             $item_list = '';

@@ -4,71 +4,71 @@ namespace MLSC\Core;
 
 class MLSCApi
 {
-    public static $Curl;
+    public $conn;
 
-    private static function init()
+    public function __construct()
     {
-        self::$Curl = curl_init();
+        $this->conn = curl_init();
     }
 
 
-    private static function setOptions($url)
+    private function setOptions($url)
     {
-        curl_setopt(self::$Curl, CURLOPT_URL, $url);
-        curl_setopt(self::$Curl, CURLOPT_HTTPHEADER, array(
-          'Accept: application/json',
-          'Content-Type: application/json'
+        curl_setopt($this->conn, CURLOPT_URL, $url);
+        curl_setopt($this->conn, CURLOPT_HTTPHEADER, array(
+            'Accept: application/json',
+            'Content-Type: application/json'
         ));
-        curl_setopt(self::$Curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($this->conn, CURLOPT_RETURNTRANSFER, 1);
     }
 
-    private static function execute($url)
+    private function execute($url)
     {
-        self::setOptions($url);
-        $result = curl_exec(self::$Curl);
+        $this->setOptions($url);
+        $result = curl_exec($this->conn);
         if (!$result) {
             die("Connection Failure");
         }
-        curl_close(self::$Curl);
+        curl_close($this->conn);
         return $result;
     }
+
     public static function post($url, $data)
     {
-        self::init();
-        curl_setopt(self::$Curl, CURLOPT_POST, 1);
+        $curl = new self();
+
+        curl_setopt($curl->conn, CURLOPT_POST, 1);
         if ($data) {
-            curl_setopt(self::$Curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl->conn, CURLOPT_POSTFIELDS, $data);
         }
 
-        return self::execute($url);
-
-
+        return $curl->execute($url);
     }
     public static function put($url, $data)
     {
-
-        curl_setopt(self::$Curl, CURLOPT_CUSTOMREQUEST, "PUT");
+        $curl = new self();
+        curl_setopt($curl->conn, CURLOPT_CUSTOMREQUEST, "PUT");
         if ($data) {
-            curl_setopt(self::$Curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl->conn, CURLOPT_POSTFIELDS, $data);
         }
-
+        return $curl->execute($url);
     }
     public static function get($url, $data)
     {
+        $curl = new self();
         if ($data) {
             $url = sprintf("%s?%s", $url, http_build_query($data));
         }
-        return self::execute($url);
+        return $curl->execute($url);
     }
 
     public static function delete($url, $data)
     {
-
-        curl_setopt(self::$Curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+        $curl = new self();
+        curl_setopt($curl->conn, CURLOPT_CUSTOMREQUEST, "DELETE");
         if ($data) {
-            curl_setopt(self::$Curl, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($curl->conn, CURLOPT_POSTFIELDS, $data);
         }
-        return self::execute($url);
+        return $curl->execute($url);
     }
-
 }

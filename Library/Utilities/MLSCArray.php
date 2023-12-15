@@ -39,7 +39,7 @@ class MLSCArray
         $jsonArray = [];
 
         foreach($array as $key => $value) {
-            if($key == 'effectIdentifier') {
+            if($key == 'effect') {
                 $jsonArray[] = '"effect": "' . $value . '"';
                 continue;
             }
@@ -77,6 +77,12 @@ class MLSCArray
 
 
 
+    }
+    public static function arrays_are_equal($array1, $array2)
+    {
+        array_multisort($array1);
+        array_multisort($array2);
+        return (serialize($array1) === serialize($array2));
     }
 
 

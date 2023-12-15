@@ -2,9 +2,10 @@
 
 namespace MLSC\Core;
 
+use MLSC\Core\MLSC;
 use MLSC\Core\MLSCApi;
 
-class MLSCDevice
+class Device extends MLSC
 {
 
     public static function getAllDevices()
@@ -14,26 +15,26 @@ class MLSCDevice
       return $response;
     }
 
-    
+
     public static function getAllDeviceIds()
     {
-    
+
       $device_array=array();
       $result_array=self::getAllDevices();
-      
-         
+
+
       if ($result_array == true ) {
         foreach ($result_array as $dev_key => $dev_value)
         {
           $device_array[]=$dev_value["id"];
         }
-    
+
         return $device_array;
       } else {
         return false;
       }
     }
-    
+
     public static function deviceId(&$string)
     {
         if (!preg_match('(device)', $string)) {
@@ -58,7 +59,7 @@ class MLSCDevice
             $devices[] = $device_id;
         }
 
-        array_walk($devices, 'deviceId');
+        array_walk($devices, ['self','deviceId']);
 
         return $devices;
     }

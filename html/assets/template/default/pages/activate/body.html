@@ -11,25 +11,25 @@
     </div>
 </div>
 <script>
-function clickButton(id) {
-   
+    function clickButton(id) {
 
-    $.ajax({
-        type: "post",
-        url: "process.php",
-        data:
-        {
-            'action': 'activate',
-            'effect': id,
-            // 'return_url': 'index.php'
-        },
-        cache: false,
-        success: function (data) {
-            console.log(data);
-            location.reload();
-        }
-    });
-   
-    return false;
-}
+        var path = window.location.pathname;
+        var page = path.split("/").pop();
+        $.ajax({
+            type: "post",
+            url: page,
+            data:
+            {
+                'action': 'activate',
+                'effect': id,
+            },
+            cache: false,
+            success: function (data) {
+                // console.log(page);
+                location.reload();
+            }
+        });
+
+        return false;
+    }
 </script>

@@ -24,14 +24,14 @@ class HTMLUtils extends HTMLDocument
 
     }
 
-    public static function colorSelectBox( $setting_value='')
+    public static function colorSelectBox($setting_value = '')
     {
         $select_box = self::$select_templates . '/select';
         $params = HTMLForms::cgSelectBox('colors', $setting_value);
         return  Template::GetHTML($select_box, $params);
     }
 
-    public static function gradientsSelectBox( $setting_value ='')
+    public static function gradientsSelectBox($setting_value = '')
     {
         $select_box = self::$select_templates . '/select';
         $params = HTMLForms::cgSelectBox('gradients', $setting_value);
@@ -81,7 +81,7 @@ class HTMLUtils extends HTMLDocument
 
     private static function getFormType($setting_name, $setting_value)
     {
-        $setting_label = ucwords(str_replace("_"," ",$setting_name));
+        $setting_label = ucwords(str_replace("_", " ", $setting_name));
         switch($setting_name) {
             case 'mirror':
             case 'use_gradient':
@@ -90,72 +90,72 @@ class HTMLUtils extends HTMLDocument
             case 'change_color':
             case 'reverse':
             case 'use_custom_color':
-                case 'swap_side':
-                    case 'use_color_variation':
+            case 'swap_side':
+            case 'use_color_variation':
 
-                return HTMLForms::getCheckbox(['NAME' => $setting_name,'LABEL' =>$setting_label,'VALUE' => $setting_value]);
+                return HTMLForms::getCheckbox(['NAME' => $setting_name,'LABEL' => $setting_label,'VALUE' => $setting_value]);
                 break;
 
             case 'custom_color':
                 return self::customColorBox();
                 break;
             case 'color':
-                return self::colorSelectBox( $setting_value);
+                return self::colorSelectBox($setting_value);
                 break;
             case 'gradient':
-                return self::gradientsSelectBox( $setting_value);
+                return self::gradientsSelectBox($setting_value);
                 break;
             case 'speed':
-                case 'bubble_length':
-                    case 'bubble_repeat':
-                case 'blur':
-                case 'star_ascending_speed':
-                case 'star_descending_speed':
-                case 'star_rising_speed':
-                case 'stars_count':
-                case 'stars_length':
-                    case 'color_variation':
-                    case 'firebase_area_maxlength':
-                    case 'firebase_area_minlength':
-                    case 'firebase_flicker_speed':
-                    case 'sparks_area_maxlength':
-                    case 'sparks_area_minlength':
-                    case 'sparks_flicker_speed':
-                    case 'sparks_fly_speed':
-                    case 'sparks_max_length':
-                    case 'sparks_maxappear_distance':
-                    case 'sparks_min_length':
-                    case 'sparks_minappear_distance':
-                    case 'mask_blur':
+            case 'bubble_length':
+            case 'bubble_repeat':
+            case 'blur':
+            case 'star_ascending_speed':
+            case 'star_descending_speed':
+            case 'star_rising_speed':
+            case 'stars_count':
+            case 'stars_length':
+            case 'color_variation':
+            case 'firebase_area_maxlength':
+            case 'firebase_area_minlength':
+            case 'firebase_flicker_speed':
+            case 'sparks_area_maxlength':
+            case 'sparks_area_minlength':
+            case 'sparks_flicker_speed':
+            case 'sparks_fly_speed':
+            case 'sparks_max_length':
+            case 'sparks_maxappear_distance':
+            case 'sparks_min_length':
+            case 'sparks_minappear_distance':
+            case 'mask_blur':
 
                 return HTMLForms::rangeSlider(['NAME' => $setting_name,'LABEL' => $setting_label,'VALUE' => $setting_value]);
                 break;
 
-                case 'firebase_maincolor':
-                    return self::colorSelectBox( $setting_value);
-                    // HTMLForms::rangeSlider(['NAME' => $setting_name,'LABEL' => 'Fire Base Color','VALUE' => $setting_value]);
-                    break;
-    
-                    case 'sparks_maincolor':
-                        return self::colorSelectBox( $setting_value);
-                        //HTMLForms::rangeSlider(['NAME' => $setting_name,'LABEL' => 'Sparks Base Color','VALUE' => $setting_value]);
-                        break;
-        
+            case 'firebase_maincolor':
+                return self::colorSelectBox($setting_value);
+                // HTMLForms::rangeSlider(['NAME' => $setting_name,'LABEL' => 'Fire Base Color','VALUE' => $setting_value]);
+                break;
+
+            case 'sparks_maincolor':
+                return self::colorSelectBox($setting_value);
+                //HTMLForms::rangeSlider(['NAME' => $setting_name,'LABEL' => 'Sparks Base Color','VALUE' => $setting_value]);
+                break;
+
 
             case 'pendulum_length':
                 return HTMLForms::rangeSlider(['NAME' => $setting_name,'LABEL' => 'Length','VALUE' => $setting_value]);
                 break;
 
-                case 'rods_distance':
-                    return HTMLForms::rangeSlider(['NAME' => $setting_name,'LABEL' => 'Rod Distance','VALUE' => $setting_value]);
-                    break;
-                    case 'rods_length':
-                        return HTMLForms::rangeSlider(['NAME' => $setting_name,'LABEL' => 'Rod Length','VALUE' => $setting_value]);
-                        break;
-                        case str_starts_with($setting_name,"segment"):
-                            return HTMLForms::segmentSetting($setting_name,$setting_label,$setting_value);
-                           // return '<span class="text-info">' . $setting_name . '</span><br>';
-                            break;
+            case 'rods_distance':
+                return HTMLForms::rangeSlider(['NAME' => $setting_name,'LABEL' => 'Rod Distance','VALUE' => $setting_value]);
+                break;
+            case 'rods_length':
+                return HTMLForms::rangeSlider(['NAME' => $setting_name,'LABEL' => 'Rod Length','VALUE' => $setting_value]);
+                break;
+            case str_starts_with($setting_name, "segment"):
+                return HTMLForms::segmentSetting($setting_name, $setting_label, $setting_value);
+                // return '<span class="text-info">' . $setting_name . '</span><br>';
+                break;
             default:
                 return '<span class="text-danger">' . $setting_name . '</span><br>';
                 break;
