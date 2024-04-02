@@ -9,6 +9,16 @@ namespace MLSC\Core;
 
 class MLSC
 {
+
+    private static $NavItemJson = __CONFIG_LIB__.'/navigation.json';
+
+    public static function jsonToArray()
+    {
+        $string = file_get_contents(self::$NavItemJson);
+        return json_decode($string, 1);
+    }
+
+
     public function __construct()
     {
     }

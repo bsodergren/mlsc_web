@@ -11,10 +11,13 @@ use Spatie\Color\Rgb;
 use MLSC\Bundle\Template\Template;
 use MLSC\Bundle\Template\HTMLForms;
 use MLSC\Bundle\Template\Theme\Navbar;
+use MLSC\Bundle\Template\Helper\Helper;
 
 trait TemplateCallbacks
 {
-    private $hidden = '';
+    private $hidden             = '';
+
+
 
     private function arrayToString($array, $value, $end)
     {
@@ -148,48 +151,17 @@ trait TemplateCallbacks
         return $this->arrayToString($matches, $select_options, '</select>');
     }
 
-    public function callback_getNavLinks_html($matches)
+    public function callback_parse_function($matches)
     {
-        $html     = '';
-        $NavItems = [
-            ['URL' => 'index.php',
-            'TEXT' => 'Dashboard',
-            'ICON' => 'icon-home'],
+        $helper = new Helper;
+        $method = $matches[1];
+        // $value = Helper::$method();
+       // if(method_exists($helper,$method)){
+           return  $helper->$method($matches);
+       // }
 
-            ['URL' => 'brightness.php',
-            'TEXT' => 'LED Brightnes',
-            'ICON' => 'icon-settings'],
-
-            ['URL' => 'activate.php',
-            'TEXT' => 'Active Effect',
-            'ICON' => 'icon-settings'],
-    ];
-        foreach ($NavItems as $link)
-        {
-            $html .= Template::GetHTML('base/navbar/menu_link', $link);
-        }
-
-        return $html;
     }
 
-    public function callback_getEffects_html($matches)
-    {
-        $current_effect = '';
-
-        $effect_html    = '';
-
-        if (\array_key_exists('effect', $_REQUEST))
-        {
-            $current_effect = $_REQUEST['effect'];
-        }
-
-        if (\array_key_exists(1, $matches))
-        {
-            $effect_html = Navbar::getEffectList('effects.php', $current_effect);
-        }
-
-        return $effect_html;
-    }
 
     public function callback_include_html($matches)
     {

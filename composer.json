@@ -1,16 +1,10 @@
 {
-    "require": {
-        "monolog/monolog": "^3.5",
-        "spatie/color": "^1.5"
-    },
+   
     "autoload": {
         "psr-4": {
             "MLSC\\": "Library"
         },
         "classmap": ["Library"]
-    },
-    "require-dev": {
-        "symfony/var-dumper": "^6.2"
-        }
+    }
 
 }

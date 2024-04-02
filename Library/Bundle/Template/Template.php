@@ -32,8 +32,7 @@ class Template
     public const VAR_CALLBACK         =   '|%%(\w+)%%|i';
 
     public const INCLUDE_CALLBACK     = '|{{include=([a-zA-Z\/]+)(,(\w+)=\|(.{0,})\|)?}}|i';
-    public const GETEFFECTS_MENU      = '|{{(getEffects)?}}|i';
-    public const GETNAVLINKS_MENU     = '|{{(getNavLinks)?}}|i';
+    public const FUNCTION_CALLBACK     = '|{{function=([a-zA-Z_]+)(.*)?}}|i';
 
     public const INPUT_CALLBACK       = '|(<input name=")([a-z_]+)(:.*)(>)|i';
     public const SELECT_CALLBACK      = '|(<select name=")([_[a-z]+)(:.*class=")(.*)(".*>)(</select>)|i';
@@ -142,8 +141,8 @@ class Template
 
         $text         = preg_replace_callback(self::INCLUDE_CALLBACK, [$this, 'callback_include_html'], $text);
 
-        $text         = preg_replace_callback(self::GETNAVLINKS_MENU, [$this, 'callback_getNavLinks_html'], $text);
-        $text         = preg_replace_callback(self::GETEFFECTS_MENU, [$this, 'callback_getEffects_html'], $text);
+        $text         = preg_replace_callback(self::FUNCTION_CALLBACK, [$this, 'callback_parse_function'], $text);
+        // $text         = preg_replace_callback(self::GETEFFECTS_MENU, [$this, 'callback_getEffects_html'], $text);
         $text         = preg_replace_callback(self::INPUT_CALLBACK, [$this, 'callback_input_html'], $text);
         $text         = preg_replace_callback(self::SELECT_CALLBACK, [$this, 'callback_selectbox_html'], $text);
         $text         = preg_replace_callback(self::SPAN_CALLBACK, [$this, 'callback_span_html'], $text);

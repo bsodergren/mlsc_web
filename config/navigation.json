@@ -1,0 +1,17 @@
+[
+    {
+        "TEXT": "Dashboard",
+        "URL": "index.php",
+        "ICON": "icon-home"
+    },
+    {
+        "TEXT": "LED Brightnes",
+        "URL": "brightness.php",
+        "ICON": "icon-settings"
+    },
+    {
+        "TEXT": "Active Effect",
+        "URL": "activate.php",
+        "ICON": "icon-settings"
+    }
+]

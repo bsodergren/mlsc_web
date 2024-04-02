@@ -7,10 +7,13 @@
 
 namespace MLSC\Pages;
 
+use MLSC\Core\Device;
 use MLSC\Bundle\Template\Template;
 
 class Effects extends Pages
 {
+    private static $CustomEffect = ['effect_advanced_scroll'];
+
     public static function run()
     {
         $effect                   = '';
@@ -19,6 +22,15 @@ class Effects extends Pages
             $effect = $_REQUEST['effect'];
         }
 
+        // if (\in_array($effect, self::$CustomEffect))
+        // {
+        //     $devices              = Device::deviceList();
+
+        //     foreach ($devices as $device)
+        //     {
+        //     }
+        // } else
+        // {
         $effect_settings          = \MLSC\Core\Effects::getDeviceEffect(1, $effect);
         $params                   = $effect_settings['settings'];
         $params['PROCESS_URL']    = $_SERVER['PHP_SELF'];
@@ -31,5 +43,7 @@ class Effects extends Pages
 
         $effect_html              = Template::GetHTML(self::$TemplateRoot.'/mlsc/'.$effect, $params);
         self::Render(['BODY' => $effect_html]);
+        // }
+        // }
     }
 }

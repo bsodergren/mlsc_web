@@ -9,13 +9,14 @@
 
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="%%MLSC_URL%%"><i class="feather icon-home"></i></a></li>
-                                    <li class="breadcrumb-item"><a href="/index.php">Home</a></li>
+                                    {{function=breadcrumbs}}
+
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                {{function=deviceList!page="index|brightness"}}
                 %%PAGE_HTML%%
 
 

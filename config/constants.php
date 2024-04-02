@@ -5,7 +5,7 @@
  *
  */
 
-define('__MLSC_HOST__', 'http://lights.local');
+define('__MLSC_HOST__', 'http://lights.lan');
 define('DEV_SYSTEM_URL', __MLSC_HOST__.'/api/system/devices');
 define('DEV_SETTINGS_URL', __MLSC_HOST__.'/api/settings/device');
 define('DEV_UDP_URL', __MLSC_HOST__.'/api/settings/device/output-type');
